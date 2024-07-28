@@ -11,7 +11,7 @@ $bounces_directories"
 
 IFS=$'\n'
 for bounce_directory in $all_bounce_directories; do
-    if ! latest_mp3=$(find "$bounce_directory" -type f -name "*.mp3" -exec stat -f "%B %N" {} + | sort -nr | head -1 |
+	if ! latest_mp3=$(find "$bounce_directory" -type f -name "*.mp3" -o -name "*.wav" -exec stat -f "%B %N" {} + | sort -nr | head -1 |
 cut -c 12-); then
         echo "Error: $latest_mp3 not found"
         continue
